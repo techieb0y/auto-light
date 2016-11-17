@@ -16,7 +16,7 @@ light_off() {
 }
 EOF
 ) > /tmp/$$
-	curl -X PUT -T /tmp/$$ -H "Authorization: Bearer ${TOKEN}" https://api.lifx.com/v1/lights/id:${BULB}/state
+	curl -s -X PUT -T /tmp/$$ -H "Authorization: Bearer ${TOKEN}" https://api.lifx.com/v1/lights/id:${BULB}/state
 	rm -f /tmp/$$
 }
 
@@ -28,7 +28,7 @@ light_on() {
 }
 EOF
 ) > /tmp/$$
-	curl -X PUT -T /tmp/$$ -H "Authorization: Bearer ${TOKEN}" https://api.lifx.com/v1/lights/id:${BULB}/state
+	curl -s -X PUT -T /tmp/$$ -H "Authorization: Bearer ${TOKEN}" https://api.lifx.com/v1/lights/id:${BULB}/state
 	rm -f /tmp/$$
 }
 
@@ -40,10 +40,8 @@ UP)
 	# Don't do anything special when we see the laptop come online
 	;;
 DOWN)
-	if [ "xwork-macbook" == x$NAGIOS_HOSTNAME ]; then
-		light_off
-		logger "Work PC detected as down; turn off lights."
-	fi
+	light_off
+	logger "Work PC detected as down; turn off lights."
 	;;
 ON)
 	# Only turn the light on when we're actually in the office
@@ -59,5 +57,3 @@ OFF)
 esac
 
 exit 0
-
-
