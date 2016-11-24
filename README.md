@@ -9,7 +9,7 @@ I had a few requirements:
  * Wired network ports weren't available
  * Internet access would have to play nice with the guest WiFi
 
-A "smart" LED lightbulb in a plain desk lamp looked like it was be best approach here; bulbs from [LIFX](http://www.lifx.com/), looked like the best option, so I ordered one. As an added bonus, this allows for the possibility of color-temp adjustments (as in [F.lux](https://justgetflux.com/)).
+A "smart" LED lightbulb in a plain desk lamp looked like it was be best approach here; bulbs from [LIFX](http://www.lifx.com/) looked like the best option, so I ordered one. As an added bonus, this allows for the possibility of color-temp adjustments (as in [F.lux](https://justgetflux.com/)).
 
 Ordinarily I'd prefer a no-cloud solution, but getting any kind of direct external access to the bulb or special DHCP configuration wasn't going to happen on my office network. [LIFX's API](https://api.developer.lifx.com/) looked like it would be a good middle ground. I signed up for a developer account an generated an API key, and waited for the bulb to arrive.
 
@@ -37,7 +37,7 @@ File summary:
   * check-lifx: hook for calling check_lifx.php
   * control-lifx: hook for calling control-lifx.sh
 * control-lifx.sh: Script to actually call out to the LIFX API.
-* heartheat.php: Recieve pings from cron and submit passive check result to nagios
+* heartbeat.php: Recieve pings from cron and submit passive check result to nagios
 * light-ping.sh: cron script to determine in-office state and send pings
 * nagios.cfg: snippets of required Nagios global config
 * setup-lifx.sh: Cron job run at 4am to calcualte sunset time and set `at` job.
